@@ -30,7 +30,7 @@ export default function NewContact() {
           Submit
         </button>
       </form>
-      <Link href="/contacts">Return to Contact Page</Link>
+      <Link href="/">Return to Home Page</Link>
     </div>
   );
 }
