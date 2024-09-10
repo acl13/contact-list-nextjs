@@ -1,22 +1,35 @@
 "use client";
 import Link from "next/link";
 import { ContactAPI } from "../data/contactAPI";
+import Contact from "./contact";
 
 export default function ContactPage() {
   const contacts = ContactAPI.contacts;
   return (
-    <div>
+    <div className="content-container text-center">
       <h1>All Contacts</h1>
-      <ul>
-        {contacts.map((contact) => (
-          <li key={contact.id}>
-            <Link href={`/contacts/${contact.id}`}>{contact.name}</Link>
-          </li>
-        ))}
-      </ul>
       <button>
         <Link href="/contacts/new">Add Contact</Link>
       </button>
+      <form>
+        <input
+          type="text"
+          placeholder="Search Contacts"
+          className="full-width"
+        ></input>
+      </form>
+      <ul className="contact-grid grid-headers">
+        <li>Profile Pic</li>
+        <li>Name</li>
+        <li>Email</li>
+        <li>Phone</li>
+        <li></li>
+      </ul>
+      <ul>
+        {contacts.map((contact) => (
+          <Contact key={contact.id} contact={contact} />
+        ))}
+      </ul>
     </div>
   );
 }
