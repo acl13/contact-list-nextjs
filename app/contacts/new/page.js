@@ -11,9 +11,9 @@ export default function NewContact() {
   };
 
   return (
-    <div>
+    <div className="content-container">
       <h1>Add Contact</h1>
-      <form>
+      <form className="form">
         <label>Name</label>
         <input type="text"></input>
 
