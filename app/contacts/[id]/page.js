@@ -1,14 +1,19 @@
 "use client";
 import Link from "next/link";
-import { ContactAPI } from "@/app/data/contactAPI";
+import data from "../../../public/data.json";
 import { useParams } from "next/navigation";
 
 export default function Contact() {
   const { id } = useParams();
-  const contact = ContactAPI.get(parseInt(id, 10));
+  const contact = data.contacts.find((contact) => contact.id == id);
 
   if (!contact) {
-    return <div>Sorry, that contact was not found</div>;
+    return (
+      <div>
+        <p>Sorry, that contact was not found</p>
+        <Link href="/contacts">Back</Link>
+      </div>
+    );
   }
 
   return (
