@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import data from "../../public/data.json";
 
 function useFormInput(initialValue) {
   const [value, setValue] = useState(initialValue);
@@ -23,7 +24,20 @@ export default function ContactForm() {
 
   const handleSubmit = () => {
     // add contact to contacts list
-    router.push("/contacts");
+    const generateId = () => Math.round(Math.random() * 100000000);
+    const formData = {
+      id: generateId(),
+      name: name.value,
+      email: email.value,
+      phone_number: phone.value,
+      image_url: imgUrl.value,
+    };
+
+    data.contacts.push(formData);
+
+    console.log(formData);
+    console.log(data.contacts);
+    // router.push("/contacts");
   };
 
   return (
