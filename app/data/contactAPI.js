@@ -6,7 +6,7 @@ export const ContactAPI = {
       email: "aeinstein@example.com",
       phone_number: "11111111111",
       image_url:
-        "https://en.wikipedia.org/wiki/Albert_Einstein#/media/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/1280px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
     },
     {
       id: 70219572,
