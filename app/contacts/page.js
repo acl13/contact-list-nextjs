@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import Contact from "./contact";
-import data from "../../public/data.json";
+import { ContactAPI } from "../data/contactAPI";
 
 export default function ContactPage() {
-  const contacts = data.contacts;
+  const contacts = ContactAPI.contacts;
 
   return (
     <div className="content-container text-center">
