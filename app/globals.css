@@ -119,6 +119,22 @@ li {
   width: 100%;
 }
 
+.circle {
+  border-radius: 50%;
+}
+
+.block {
+  display: block;
+}
+
+.margin-5 {
+  margin: 5px;
+}
+
+.padding-2 {
+  padding: 2px;
+}
+
 .content-container {
   width: 80%;
   margin: 1em auto;
@@ -150,8 +166,4 @@ li {
 
 .form input {
   width: 100%;
-}
-
-.circle {
-  border-radius: 50%;
 }

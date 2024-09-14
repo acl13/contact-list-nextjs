@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { FaRegEdit } from "react-icons/fa";
+import { FaRegTrashCan } from "react-icons/fa6";
 import { useParams } from "next/navigation";
 import { ContactAPI } from "@/app/data/contactAPI";
 
@@ -34,9 +36,15 @@ export default function Contact() {
         />
         <p>{contact.email}</p>
         <p>{contact.phone_number}</p>
-        <p>Edit</p>
-        <p>Delete</p>
-        <Link href="/contacts">Back</Link>
+        <button className="margin-5 padding-2">
+          <FaRegEdit size="1.5em" />
+        </button>
+        <button className="margin-5 padding-2">
+          <FaRegTrashCan size="1.5em" />
+        </button>
+        <Link href="/contacts" className="block">
+          Back
+        </Link>
       </div>
     </main>
   );
