@@ -2,9 +2,18 @@
 import Link from "next/link";
 import Contact from "./contact";
 import { ContactAPI } from "../data/contactAPI";
+import { useState } from "react";
+import { SearchBar } from "../searchBar";
 
 export default function ContactPage() {
-  const contacts = ContactAPI.contacts;
+  const [contacts, setContacts] = useState(ContactAPI.contacts);
+
+  const contactSearch = (str) => {
+    const searchedContacts = ContactAPI.contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(str.toLowerCase())
+    );
+    setContacts(searchedContacts);
+  };
 
   return (
     <div className="content-container text-center">
@@ -12,13 +21,7 @@ export default function ContactPage() {
       <button>
         <Link href="/contacts/new">Add Contact</Link>
       </button>
-      <form>
-        <input
-          type="text"
-          placeholder="Search Contacts"
-          className="full-width"
-        ></input>
-      </form>
+      <SearchBar onSearchTermChange={contactSearch} />
       <ul className="contact-grid grid-headers">
         <li>Profile Pic</li>
         <li>Name</li>

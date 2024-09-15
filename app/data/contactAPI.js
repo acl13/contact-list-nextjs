@@ -10,35 +10,31 @@ export const ContactAPI = {
     },
     {
       id: 70219572,
-      name: "Albert Einstein 2",
-      email: "aeinstein@example.com",
-      phone_number: "12222222222",
-      image_url:
-        "https://en.wikipedia.org/wiki/Albert_Einstein#/media/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
+      name: "Bob Regular",
+      email: "bregular@example.com",
+      phone_number: "11234567890",
+      image_url: "url",
     },
     {
       id: 70219573,
-      name: "Albert Einstein 3",
-      email: "aeinstein@example.com",
+      name: "Cats Mcgee",
+      email: "cats@example.com",
       phone_number: "13333333333",
-      image_url:
-        "https://en.wikipedia.org/wiki/Albert_Einstein#/media/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
+      image_url: "url",
     },
     {
       id: 70219574,
-      name: "Albert Einstein 4",
-      email: "aeinstein@example.com",
+      name: "Fred Flinstone",
+      email: "fflinstone@example.com",
       phone_number: "14444444444",
-      image_url:
-        "https://en.wikipedia.org/wiki/Albert_Einstein#/media/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
+      image_url: "url",
     },
     {
       id: 70219575,
-      name: "Albert Einstein 5",
-      email: "aeinstein@example.com",
+      name: "Poppy Seed",
+      email: "poppys@example.com",
       phone_number: "15555555555",
-      image_url:
-        "https://en.wikipedia.org/wiki/Albert_Einstein#/media/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
+      image_url: "url",
     },
   ],
   all: function () {
