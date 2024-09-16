@@ -15,6 +15,18 @@ export default function ContactPage() {
     setContacts(searchedContacts);
   };
 
+  // TODO: Figure out why this function doesn't work, but contactSearch does?
+  const removeContact = (contact) => {
+    const contactToRemove = ContactAPI.get(contact.id);
+    console.log(contactToRemove);
+    ContactAPI.removeContact(contactToRemove);
+    console.log(ContactAPI.contacts);
+    const updatedContacts = ContactAPI.contacts;
+    // Why does setContacts update the state here???
+    setContacts(updatedContacts);
+    console.log(contacts);
+  };
+
   return (
     <div className="content-container text-center">
       <h1>All Contacts</h1>
@@ -31,7 +43,11 @@ export default function ContactPage() {
       </ul>
       <ul>
         {contacts.map((contact) => (
-          <Contact key={contact.id} contact={contact} />
+          <Contact
+            key={contact.id}
+            contact={contact}
+            removeContact={removeContact}
+          />
         ))}
       </ul>
     </div>

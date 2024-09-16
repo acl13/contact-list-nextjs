@@ -43,6 +43,10 @@ export const ContactAPI = {
   addContact: function ({ id, name, email, phone_number, image_url }) {
     this.contacts.push({ id, name, email, phone_number, image_url });
   },
+  removeContact: function (contact) {
+    const index = this.contacts.indexOf(contact);
+    return this.contacts.splice(index, 1);
+  },
   get: function (id) {
     const isContact = (c) => c.id === id;
     return this.contacts.find(isContact);
