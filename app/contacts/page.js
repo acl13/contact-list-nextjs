@@ -15,16 +15,9 @@ export default function ContactPage() {
     setContacts(searchedContacts);
   };
 
-  // TODO: Figure out why this function doesn't work, but contactSearch does?
   const removeContact = (contact) => {
-    const contactToRemove = ContactAPI.get(contact.id);
-    console.log(contactToRemove);
-    ContactAPI.removeContact(contactToRemove);
-    console.log(ContactAPI.contacts);
-    const updatedContacts = ContactAPI.contacts;
-    // Why does setContacts update the state here???
-    setContacts(updatedContacts);
-    console.log(contacts);
+    const trimmedContacts = ContactAPI.remove(contact);
+    setContacts(trimmedContacts);
   };
 
   return (

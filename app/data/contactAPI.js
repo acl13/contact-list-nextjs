@@ -43,9 +43,18 @@ export const ContactAPI = {
   addContact: function ({ id, name, email, phone_number, image_url }) {
     this.contacts.push({ id, name, email, phone_number, image_url });
   },
-  removeContact: function (contact) {
-    const index = this.contacts.indexOf(contact);
-    return this.contacts.splice(index, 1);
+  remove: function (contact) {
+    const index = this.contacts.findIndex((c) => c.id === contact.id);
+    if (index !== -1) {
+      // creates new array to avoid deleting contact twice in strict mode
+      const trimmedContacts = [
+        ...this.contacts.slice(0, index),
+        ...this.contacts.slice(index + 1),
+      ];
+      // removes contact from array
+      this.contacts.splice(index, 1);
+      return trimmedContacts;
+    }
   },
   get: function (id) {
     const isContact = (c) => c.id === id;
