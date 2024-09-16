@@ -1,4 +1,6 @@
+"use client";
 import { useState } from "react";
+import Link from "next/link";
 import { FaRegEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 
@@ -15,9 +17,11 @@ export default function EditAndDeleteButtons({ contact, removeContact }) {
 
   return (
     <>
-      <button className="margin-5 padding-2">
-        <FaRegEdit size="1.5em" />
-      </button>
+      <Link href={`/contacts/${contact.id}/edit`}>
+        <button className="margin-5 padding-2">
+          <FaRegEdit size="1.5em" />
+        </button>
+      </Link>
       <button className="margin-5 padding-2" onClick={openModal}>
         <FaRegTrashCan size="1.5em" />
       </button>

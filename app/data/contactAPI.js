@@ -56,6 +56,13 @@ export const ContactAPI = {
       return trimmedContacts;
     }
   },
+  editContact: function ({ id, name, email, phone_number, image_url }) {
+    const index = this.contacts.findIndex((c) => c.id === id);
+    this.contacts[index].name = name;
+    this.contacts[index].email = email;
+    this.contacts[index].phone_number = phone_number;
+    this.contacts[index].image_url = image_url;
+  },
   get: function (id) {
     const isContact = (c) => c.id === id;
     return this.contacts.find(isContact);
