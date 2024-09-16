@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaRegEdit } from "react-icons/fa";
-import { FaRegTrashCan } from "react-icons/fa6";
+import EditAndDeleteButtons from "./EditAndDeleteButtons";
 
 export default function Contact({ contact, removeContact }) {
   return (
@@ -30,17 +29,10 @@ export default function Contact({ contact, removeContact }) {
         <li>{contact.email}</li>
         <li>{contact.phone_number}</li>
         <li>
-          <button className="margin-5 padding-2">
-            <FaRegEdit size="1.5em" />
-          </button>
-          <button
-            className="margin-5 padding-2"
-            onClick={() => {
-              removeContact(contact);
-            }}
-          >
-            <FaRegTrashCan size="1.5em" />
-          </button>
+          <EditAndDeleteButtons
+            contact={contact}
+            removeContact={removeContact}
+          />
         </li>
       </ul>
     </li>

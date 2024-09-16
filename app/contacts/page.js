@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import Contact from "../components/contact";
+import Contact from "../components/Contact";
 import { ContactAPI } from "../data/contactAPI";
 import { useState } from "react";
-import { SearchBar } from "../components/searchBar";
+import { SearchBar } from "../components/SearchBar";
 
 export default function ContactPage() {
   const [contacts, setContacts] = useState(ContactAPI.contacts);

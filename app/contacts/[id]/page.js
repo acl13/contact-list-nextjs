@@ -1,14 +1,20 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { FaRegEdit } from "react-icons/fa";
-import { FaRegTrashCan } from "react-icons/fa6";
+import EditAndDeleteButtons from "@/app/components/EditAndDeleteButtons";
 import { useParams } from "next/navigation";
 import { ContactAPI } from "@/app/data/contactAPI";
 
-export default function Contact() {
+export default function ContactProfile() {
+  const router = useRouter();
   const { id } = useParams();
   const contact = ContactAPI.contacts.find((contact) => contact.id == id);
+
+  const removeContact = (contact) => {
+    ContactAPI.remove(contact);
+    router.push("/contacts");
+  };
 
   if (!contact) {
     return (
@@ -36,12 +42,7 @@ export default function Contact() {
         />
         <p>{contact.email}</p>
         <p>{contact.phone_number}</p>
-        <button className="margin-5 padding-2">
-          <FaRegEdit size="1.5em" />
-        </button>
-        <button className="margin-5 padding-2">
-          <FaRegTrashCan size="1.5em" />
-        </button>
+        <EditAndDeleteButtons contact={contact} removeContact={removeContact} />
         <Link href="/contacts" className="block">
           Back
         </Link>
