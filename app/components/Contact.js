@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Link from "next/link";
 import Image from "next/image";
 import EditAndDeleteButtons from "./EditAndDeleteButtons";
@@ -38,3 +39,16 @@ export default function Contact({ contact, removeContact }) {
     </li>
   );
 }
+
+Contact.propTypes = {
+  //contact is an object with properties id, name, email, phone_number, and imgage_url
+  contact: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    phone_number: PropTypes.string,
+    image_url: PropTypes.string,
+  }),
+
+  // removeContact is a function that takes an argument of a contact object
+  removeContact: PropTypes.func,
+};

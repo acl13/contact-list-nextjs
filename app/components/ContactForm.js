@@ -1,4 +1,5 @@
 "use client";
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ContactAPI } from "../data/contactAPI";
@@ -97,3 +98,13 @@ export default function ContactForm({ contact }) {
     </>
   );
 }
+
+ContactForm.propTypes = {
+  //contact is an object with properties id, name, email, phone_number, and imgage_url
+  contact: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    phone_number: PropTypes.string,
+    image_url: PropTypes.string,
+  }),
+};

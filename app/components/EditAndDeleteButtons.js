@@ -1,4 +1,5 @@
 "use client";
+import PropTypes from "prop-types";
 import { useState } from "react";
 import Link from "next/link";
 import { FaRegEdit } from "react-icons/fa";
@@ -42,3 +43,16 @@ export default function EditAndDeleteButtons({ contact, removeContact }) {
     </>
   );
 }
+
+EditAndDeleteButtons.propTypes = {
+  //contact is an object with properties id, name, email, phone_number, and imgage_url
+  contact: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    phone_number: PropTypes.string,
+    image_url: PropTypes.string,
+  }),
+
+  // removeContact is a function that takes an argument of a contact object
+  removeContact: PropTypes.func,
+};
