@@ -6,6 +6,11 @@ import EditAndDeleteButtons from "@/app/components/EditAndDeleteButtons";
 import { useParams } from "next/navigation";
 import { ContactAPI } from "@/app/data/contactAPI";
 
+/**
+ * This page is available at app/contacts/[id] where [id] is a dynamic route that will use the id of the contact that is clicked by the user
+ * The ContactProfile displays the contact information of the contact with that id
+ **/
+
 export default function ContactProfile() {
   const router = useRouter();
   const { id } = useParams();

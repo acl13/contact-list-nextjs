@@ -1,3 +1,8 @@
+/**
+ * The ContactAPI is a JavaScript object that contains an array to hold the contact objects,
+ * and methods for manipulating the contacts array or speciifc objects within the array
+ **/
+
 export const ContactAPI = {
   contacts: [
     {

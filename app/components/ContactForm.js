@@ -5,12 +5,18 @@ import { useRouter } from "next/navigation";
 import { ContactAPI } from "../data/contactAPI";
 
 /**
- This form is used in two scenarios: one for creating a new contact and adding it to the ContactAPI, and one for editing an existing contact
+ * This form is used in two scenarios: one for creating a new contact and adding it to the ContactAPI, and one for editing an existing contact
 
 So as not to copy/paste the same form in two places, this form has checks to see if the contact already exists in the ContactAPI object, and behaves differently based on whether or not that is true
 
 The form will be empty (all inputs set to null) if the contact does not exist, or populated with the existing contact information if the contact does exist
- **/
+ * 
+ * @component
+ * @param {Object} props - the component accepts contact and removeContact as props
+ * @param {Object} props.contact - an object that contains the contact's id, name, email, and phone number
+ * @returns {JSX.Element} the rendered form, either empty or populated with existing contact information
+ * 
+**/
 
 export default function ContactForm({
   contact = { id: 0, name: "", email: "", phone_number: "", image_url: "" },
@@ -77,6 +83,9 @@ export default function ContactForm({
   };
 
   const validateForm = () => {
+    // will check that each input is not empty, and test against a regex for email and phone_number inputs
+    // the errors object is used to contain error messages that will be displayed to the user
+
     const errors = {};
 
     if (name === null || !name.trim()) {

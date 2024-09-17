@@ -3,6 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import EditAndDeleteButtons from "./EditAndDeleteButtons";
 
+/**
+ * The Contact component displays a list of the contact's information
+ *
+ * @component
+ * @param {Object} props - the component accepts contact and removeContact as props
+ * @param {Object} props.contact - an object that contains the contact's id, name, email, and phone number
+ * @param {function} props.removeContact - removes contact from ContactAPI
+ * @returns {JSX.Element} the rendered list of contact information, styled as a grid
+ **/
 export default function Contact({ contact, removeContact }) {
   return (
     <li>
