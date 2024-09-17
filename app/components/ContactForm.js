@@ -29,31 +29,73 @@ export default function ContactForm({
   const [image_url, setImage_url] = useState(initialImgUrl);
   const generateId = () => Math.round(Math.random() * 100000000);
 
+  const [errors, setErrors] = useState({});
+
   const handleSubmit = () => {
-    // add contact to contacts list if contact does not exist yet
-    if (!ContactAPI.contacts.includes(contact)) {
-      const id = generateId();
-      ContactAPI.addContact({
+    const validationErrors = validateForm();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
+      //Form validation is successful
+
+      // add contact to contacts list if contact does not exist yet
+      if (!ContactAPI.contacts.includes(contact)) {
+        const id = generateId();
+        ContactAPI.addContact({
+          id,
+          name,
+          email,
+          phone_number,
+          image_url,
+        });
+        //TODO: save data (local storage?)
+        router.push("/contacts");
+        return;
+      }
+      // Else edit existing contact info
+      const id = contact.id;
+      ContactAPI.editContact({
         id,
         name,
         email,
         phone_number,
         image_url,
       });
-      //TODO: save data (local storage?)
       router.push("/contacts");
-      return;
+    } else {
+      // Form validation is not succesful.
+      alert(
+        "There was an issue submitting this form. Please update any required fields and try again."
+      );
     }
-    // Else edit existing contact info
-    const id = contact.id;
-    ContactAPI.editContact({
-      id,
-      name,
-      email,
-      phone_number,
-      image_url,
-    });
-    router.push("/contacts");
+  };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (name === null || !name.trim()) {
+      errors.name = "Name is required";
+    }
+
+    if (email === null || !email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = "Email is invalid";
+    }
+
+    if (phone_number === null || !phone_number.trim()) {
+      errors.phone_number = "Phone number is required";
+    } else if (
+      !/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/.test(phone_number)
+    ) {
+      errors.phone_number = "Phone number is invalid";
+    }
+
+    if (image_url === null || !image_url.trim()) {
+      errors.image_url = "Image URL is required";
+    }
+
+    return errors;
   };
 
   return (
@@ -64,9 +106,9 @@ export default function ContactForm({
           type="text"
           value={name}
           placeholder="name"
-          required
           onChange={(e) => setName(e.target.value)}
         />
+        {errors.name && <span className="error-message">{errors.name}</span>}
 
         <br />
 
@@ -75,9 +117,9 @@ export default function ContactForm({
           type="text"
           value={email}
           placeholder="name@example.com"
-          required
           onChange={(e) => setEmail(e.target.value)}
         />
+        {errors.email && <span className="error-message">{errors.email}</span>}
 
         <br />
 
@@ -85,10 +127,12 @@ export default function ContactForm({
         <input
           type="text"
           value={phone_number}
-          placeholder="(1) 000-000-0000"
-          required
+          placeholder="1 000-000-0000"
           onChange={(e) => setPhone_number(e.target.value)}
         />
+        {errors.phone_number && (
+          <span className="error-message">{errors.phone_number}</span>
+        )}
 
         <br />
         <label>Image URL</label>
@@ -96,12 +140,15 @@ export default function ContactForm({
           type="text"
           value={image_url}
           placeholder="https://www.example.com"
-          required
           onChange={(e) => setImage_url(e.target.value)}
         />
+        {errors.image_url && (
+          <span className="error-message">{errors.image_url}</span>
+        )}
+
         <button
           type="button"
-          className="vertical-margin-10 padding-2"
+          className="vertical-margin-10 padding-2 block"
           onClick={handleSubmit}
         >
           Submit
