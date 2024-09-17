@@ -4,7 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ContactAPI } from "../data/contactAPI";
 
-// This form is used in two scenarios: one for creating a new contact and adding it to the ContactAPI, and one for editing an existing contact
+/**
+ This form is used in two scenarios: one for creating a new contact and adding it to the ContactAPI, and one for editing an existing contact
+
+So as not to copy/paste the same form in two places, this form has checks to see if the contact already exists in the ContactAPI object, and behaves differently based on whether or not that is true
+
+The form will be empty (all inputs set to null) if the contact does not exist, or populated with the existing contact information if the contact does exist
+ **/
 
 export default function ContactForm({
   contact = { id: 0, name: "", email: "", phone_number: "", image_url: "" },
