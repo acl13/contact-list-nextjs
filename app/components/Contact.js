@@ -43,6 +43,7 @@ export default function Contact({ contact, removeContact }) {
 Contact.propTypes = {
   //contact is an object with properties id, name, email, phone_number, and imgage_url
   contact: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     email: PropTypes.string,
     phone_number: PropTypes.string,

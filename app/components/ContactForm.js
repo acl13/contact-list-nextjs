@@ -4,13 +4,25 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ContactAPI } from "../data/contactAPI";
 
-export default function ContactForm({ contact }) {
+// This form is used in two scenarios: one for creating a new contact and adding it to the ContactAPI, and one for editing an existing contact
+
+export default function ContactForm({
+  contact = { id: 0, name: "", email: "", phone_number: "", image_url: "" },
+}) {
   const router = useRouter();
-  // set initial state of input values based on whether contact exists or not
-  const initialName = contact ? contact.name : null;
-  const initialEmail = contact ? contact.email : null;
-  const initialPhone = contact ? contact.phone_number : null;
-  const initialImgUrl = contact ? contact.image_url : null;
+  // set initial state of input values based on whether contact exists in ContactAPI
+  const initialName = ContactAPI.contacts.includes(contact)
+    ? contact.name
+    : null;
+  const initialEmail = ContactAPI.contacts.includes(contact)
+    ? contact.email
+    : null;
+  const initialPhone = ContactAPI.contacts.includes(contact)
+    ? contact.phone_number
+    : null;
+  const initialImgUrl = ContactAPI.contacts.includes(contact)
+    ? contact.image_url
+    : null;
   const [name, setName] = useState(initialName);
   const [email, setEmail] = useState(initialEmail);
   const [phone_number, setPhone_number] = useState(initialPhone);
@@ -19,7 +31,7 @@ export default function ContactForm({ contact }) {
 
   const handleSubmit = () => {
     // add contact to contacts list if contact does not exist yet
-    if (!contact) {
+    if (!ContactAPI.contacts.includes(contact)) {
       const id = generateId();
       ContactAPI.addContact({
         id,
@@ -102,6 +114,7 @@ export default function ContactForm({ contact }) {
 ContactForm.propTypes = {
   //contact is an object with properties id, name, email, phone_number, and imgage_url
   contact: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     email: PropTypes.string,
     phone_number: PropTypes.string,
